@@ -54,7 +54,7 @@ public class Presentacion {
 			public void run() {
 				try {
 					Presentacion window = new Presentacion();
-					window.Listado.setVisible(true);
+					window.Menu_Principal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,7 +66,7 @@ public class Presentacion {
 	 * Create the application.
 	 */
 	public Presentacion() {
-		Listado();
+		Menu_Principal();
 	}
 	private void Alta_Electrodomestico() {
 		Alta_Electrodomestico = new JFrame();
