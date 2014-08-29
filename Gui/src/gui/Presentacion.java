@@ -23,6 +23,7 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.peer.MenuPeer;
+import java.util.ArrayList;
 
 import javax.swing.JTable;
 
@@ -34,6 +35,8 @@ public class Presentacion {
 	private JFrame Lavarropas;
 	private JFrame Televisor;
 	private JFrame Alta_Electrodomestico;
+	private JFrame Baja_Electrodomestico;
+	xTableModelElectrodomesticos modelo;
 	private JTextField textprecio;
 	private JTextField txtcolor;
 	private JTextField txtconsumo;
@@ -49,6 +52,11 @@ public class Presentacion {
 	private JTable table;
 	private JMenuItem mntmMenuPrincipal;
 	private JMenuItem mntmMenuPrincipal_1;
+	private JTextField textID;
+	private JLabel lblRangoImportes;
+	private JTextField textImporteMinimo;
+	private JLabel label;
+	private JTextField textImporteMax;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -61,10 +69,6 @@ public class Presentacion {
 			}
 		});
 	}
-
-	/**
-	 * Create the application.
-	 */
 	public Presentacion() {
 		Menu_Principal();
 	}
@@ -77,7 +81,7 @@ public class Presentacion {
 		JButton btnLavarropas_1 = new JButton("Lavarropas");
 		btnLavarropas_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Lavarropas();
+				Lavarropas(null);
 				Alta_Electrodomestico.setVisible(false);
 			}
 		});
@@ -87,7 +91,7 @@ public class Presentacion {
 		JButton btnTelevision = new JButton("Television");
 		btnTelevision.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Televisor();
+				Televisor(null);
 				Alta_Electrodomestico.setVisible(false);
 			}
 		});
@@ -100,19 +104,6 @@ public class Presentacion {
 		Menu_Principal.setBounds(100, 100, 450, 300);
 		Menu_Principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Menu_Principal.getContentPane().setLayout(null);
-		
-		JButton btnBaja = new JButton("Baja");
-		btnBaja.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Listado();
-			}
-		});
-		btnBaja.setBounds(164, 79, 89, 23);
-		Menu_Principal.getContentPane().add(btnBaja);
-		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(293, 79, 89, 23);
-		Menu_Principal.getContentPane().add(btnModificar);
 		
 		JButton btnListado = new JButton("Listado");
 		btnListado.addActionListener(new ActionListener() {
@@ -131,10 +122,10 @@ public class Presentacion {
 				Menu_Principal.setVisible(false);
 			}
 		});
-		btnAlta.setBounds(38, 79, 89, 23);
+		btnAlta.setBounds(164, 81, 89, 23);
 		Menu_Principal.getContentPane().add(btnAlta);
 	}
-	private void Lavarropas() {
+	private void Lavarropas(final Lavarropas lav) {
 
 		Lavarropas = new JFrame();
 		Lavarropas.setBounds(100, 100, 450, 300);
@@ -194,11 +185,24 @@ public class Presentacion {
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				Lavarropas l=new Lavarropas(Double.parseDouble(textprecio.getText()) , Integer.parseInt(textpeso.getText()) , 
-						ce.comprobarColor(txtcolor.getText()), ce.comprobarConsumoEnergetico(txtconsumo.getText()),Double.parseDouble(textcarga.getText()));
-				ce.altaElectrodomestico(l);
-				
-				Menu_Principal.setVisible(true);
+				if(lav==null){
+					Lavarropas l=new Lavarropas(Double.parseDouble(textprecio.getText()) , Integer.parseInt(textpeso.getText()) , 
+							ce.comprobarColor(txtcolor.getText()), ce.comprobarConsumoEnergetico(txtconsumo.getText()),Double.parseDouble(textcarga.getText()));
+					ce.altaElectrodomestico(l);
+					}
+					else
+					{
+						Lavarropas l =new Lavarropas(Double.parseDouble(textprecio.getText()) , Integer.parseInt(textpeso.getText()) , 
+								ce.comprobarColor(txtcolor.getText()), ce.comprobarConsumoEnergetico(txtconsumo.getText()),Double.parseDouble(textcarga.getText()));
+						l.setIndice(lav.getIndice());
+						ce.getElectrodomesticos().set(lav.getIndice(), l);
+
+						Listado.setVisible(false);
+						Listado();
+						LoadTable(ce.getElectrodomesticos());
+					}
+				if(lav==null){
+				Menu_Principal.setVisible(true);}
 				Lavarropas.setVisible(false);
 			}
 		});
@@ -217,7 +221,7 @@ public class Presentacion {
 		Lavarropas.getContentPane().add(mntmMenuPrincipal);
 		Lavarropas.setVisible(true);
 		}
-	private void Televisor() {
+	private void Televisor(final Television tel) {
 		Televisor = new JFrame();
 		Televisor.setBounds(100, 100, 450, 300);
 		Televisor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -283,11 +287,24 @@ public class Presentacion {
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				if(tel==null){
 				Television t=new Television(Double.parseDouble(textprecio.getText()) , Integer.parseInt(textpeso.getText()) , 
 						ce.comprobarColor(txtcolor.getText()), ce.comprobarConsumoEnergetico(txtconsumo.getText()),
 						Integer.parseInt(textResolucion.getText()),Boolean.parseBoolean(textSintonizador.getText()));
-				ce.altaElectrodomestico(t);
-				Menu_Principal.setVisible(true);
+				ce.altaElectrodomestico(t);}
+				else if(tel!=null){
+					Television t = new Television(Double.parseDouble(textprecio.getText()) , Integer.parseInt(textpeso.getText()) , 
+							ce.comprobarColor(txtcolor.getText()), ce.comprobarConsumoEnergetico(txtconsumo.getText()),
+							Integer.parseInt(textResolucion.getText()),Boolean.parseBoolean(textSintonizador.getText()));
+					t.setIndice(tel.getIndice());
+					ce.getElectrodomesticos().set(tel.getIndice(), t);
+					Listado.setVisible(false);
+					Listado();
+					LoadTable(ce.getElectrodomesticos());
+					
+				}
+				if(tel==null){	
+				Menu_Principal.setVisible(true);}
 				Televisor.setVisible(false);
 			}
 		});
@@ -299,34 +316,61 @@ public class Presentacion {
 
 	private void Listado() {
 		Listado = new JFrame();
-		Listado.setBounds(100, 100, 779, 467);
+		Listado.setBounds(100, 100, 779, 497);
 		Listado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Listado.getContentPane().setLayout(null);
 		
 		cboElectrodomesticos = new JComboBox();
 		cboElectrodomesticos.setBounds(518, 11, 243, 22);
+		lblRangoImportes = new JLabel("Rango Importes:");
+		lblRangoImportes.setBounds(80, 15, 99, 18);
+		Listado.getContentPane().add(lblRangoImportes);
 		
+		textImporteMinimo = new JTextField();
+		textImporteMinimo.setBounds(189, 14, 86, 20);
+		Listado.getContentPane().add(textImporteMinimo);
+		textImporteMinimo.setColumns(10);
+		
+		label = new JLabel("-");
+		label.setBounds(285, 15, 10, 14);
+		Listado.getContentPane().add(label);
+		
+		textImporteMax = new JTextField();
+		textImporteMax.setBounds(295, 13, 86, 20);
+		Listado.getContentPane().add(textImporteMax);
+		textImporteMax.setColumns(10);
 		lblEtiqueta = new JLabel("");
 		lblEtiqueta.setBounds(518, 77, 0, 0);
-		
-		JButton btnListarBoletos = new JButton("ListarElectrodomesticos");
-		btnListarBoletos.setBounds(614, 54, 147, 23);
-		btnListarBoletos.addMouseListener(new MouseAdapter() {
-			@Override
+		JButton btnListar = new JButton("Listar Electrodomesticos");
+		btnListar.setBounds(528, 54, 185, 23);
+		btnListar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				LoadTable();
+				ArrayList<Electrodomestico> array = new ArrayList<Electrodomestico>();
+				if(textImporteMax.getText().length()!=0&&textImporteMax.getText().length()!=0){
+				   for (int i = 0; i < ce.getElectrodomesticos().size(); i++) {
+						if(ce.getElectrodomesticos().get(i).getPreciobase()<=Double.parseDouble(textImporteMax.getText())&&
+							ce.getElectrodomesticos().get(i).getPreciobase()>=Double.parseDouble(textImporteMinimo.getText()))
+						{
+						 array.add(ce.getElectrodomesticos().get(i));
+						}
+					}
+					LoadTable(array);
+					}
+				else
+					LoadTable(ce.getElectrodomesticos());
+				
 			}
 		});
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 88, 751, 341);
+		scrollPane.setBounds(10, 88, 751, 302);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		Listado.getContentPane().setLayout(null);
 		Listado.getContentPane().add(cboElectrodomesticos);
 		Listado.getContentPane().add(lblEtiqueta);
-		Listado.getContentPane().add(btnListarBoletos);
+		Listado.getContentPane().add(btnListar);
 		Listado.getContentPane().add(scrollPane);
 		
 		mntmMenuPrincipal_1 = new JMenuItem("Menu Principal");
@@ -339,12 +383,46 @@ public class Presentacion {
 		});
 		mntmMenuPrincipal_1.setBounds(0, 0, 107, 19);
 		Listado.getContentPane().add(mntmMenuPrincipal_1);
+		
+		JLabel lblIdElectrodomestico = new JLabel("ID Electrodomestico:");
+		lblIdElectrodomestico.setBounds(37, 415, 126, 14);
+		Listado.getContentPane().add(lblIdElectrodomestico);
+		
+		textID = new JTextField();
+		textID.setBounds(156, 412, 86, 20);
+		Listado.getContentPane().add(textID);
+		textID.setColumns(10);
+		
+		JButton btnModifica = new JButton("Modificar");
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(ce.getElectrodomesticos().get(Integer.parseInt(textID.getText())).getClass() == Television.class){
+					Televisor((Television) ce.getElectrodomesticos().get(Integer.parseInt(textID.getText())));}
+				else{
+					Lavarropas((Lavarropas)ce.getElectrodomesticos().get(Integer.parseInt(textID.getText())));}
+			}
+		});
+		btnModifica.setBounds(280, 411, 91, 23);
+		Listado.getContentPane().add(btnModifica);
+		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ce.getElectrodomesticos().remove(ce.getElectrodomesticos().get(Integer.parseInt(textID.getText())));
+				Listado.setVisible(false);
+				Listado();
+				LoadTable(ce.getElectrodomesticos());
+			}
+		});
+		btnEliminar.setBounds(381, 411, 91, 23);
+		Listado.getContentPane().add(btnEliminar);
 		Listado.setVisible(true);
 }
-private void LoadTable()
+private void LoadTable(ArrayList<Electrodomestico> e)
 {
-	xTableModelElectrodomesticos modelo=new xTableModelElectrodomesticos();
-	modelo.setDataSource( ce.getElectrodomesticos());
+	modelo=new xTableModelElectrodomesticos();
+	modelo.setDataSource(e);
 	table.setModel(modelo);
 }
 }
