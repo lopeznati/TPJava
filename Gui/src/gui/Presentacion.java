@@ -26,6 +26,7 @@ import java.awt.peer.MenuPeer;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
+import java.awt.Toolkit;
 
 public class Presentacion {
 
@@ -74,6 +75,7 @@ public class Presentacion {
 	}
 	private void Alta_Electrodomestico() {
 		Alta_Electrodomestico = new JFrame();
+		Alta_Electrodomestico.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Alta_Electrodomestico.setBounds(100, 100, 450, 300);
 		Alta_Electrodomestico.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Alta_Electrodomestico.getContentPane().setLayout(null);
@@ -101,6 +103,7 @@ public class Presentacion {
 	}
 	private void Menu_Principal() {
 		Menu_Principal = new JFrame();
+		Menu_Principal.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Menu_Principal.setBounds(100, 100, 450, 300);
 		Menu_Principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Menu_Principal.getContentPane().setLayout(null);
@@ -128,6 +131,7 @@ public class Presentacion {
 	private void Lavarropas(final Lavarropas lav) {
 
 		Lavarropas = new JFrame();
+		Lavarropas.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Lavarropas.setBounds(100, 100, 450, 300);
 		Lavarropas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Lavarropas.getContentPane().setLayout(null);
@@ -223,6 +227,7 @@ public class Presentacion {
 		}
 	private void Televisor(final Television tel) {
 		Televisor = new JFrame();
+		Televisor.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Televisor.setBounds(100, 100, 450, 300);
 		Televisor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Televisor.getContentPane().setLayout(null);
@@ -316,6 +321,7 @@ public class Presentacion {
 
 	private void Listado() {
 		Listado = new JFrame();
+		Listado.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Listado.setBounds(100, 100, 779, 497);
 		Listado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Listado.getContentPane().setLayout(null);
@@ -381,7 +387,7 @@ public class Presentacion {
 				Listado.setVisible(false);
 			}
 		});
-		mntmMenuPrincipal_1.setBounds(0, 0, 107, 19);
+		mntmMenuPrincipal_1.setBounds(0, 0, 163, 19);
 		Listado.getContentPane().add(mntmMenuPrincipal_1);
 		
 		JLabel lblIdElectrodomestico = new JLabel("ID Electrodomestico:");
