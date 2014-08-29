@@ -75,6 +75,7 @@ public class Presentacion {
 	}
 	private void Alta_Electrodomestico() {
 		Alta_Electrodomestico = new JFrame();
+		Alta_Electrodomestico.setTitle("Alta Electrodomesticos");
 		Alta_Electrodomestico.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Alta_Electrodomestico.setBounds(100, 100, 450, 300);
 		Alta_Electrodomestico.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,6 +104,7 @@ public class Presentacion {
 	}
 	private void Menu_Principal() {
 		Menu_Principal = new JFrame();
+		Menu_Principal.setTitle("Menu");
 		Menu_Principal.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Menu_Principal.setBounds(100, 100, 450, 300);
 		Menu_Principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,6 +133,7 @@ public class Presentacion {
 	private void Lavarropas(final Lavarropas lav) {
 
 		Lavarropas = new JFrame();
+		Lavarropas.setTitle("Lavarropas");
 		Lavarropas.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Lavarropas.setBounds(100, 100, 450, 300);
 		Lavarropas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -221,12 +224,13 @@ public class Presentacion {
 				Lavarropas.setVisible(false);
 			}
 		});
-		mntmMenuPrincipal.setBounds(0, 0, 107, 19);
+		mntmMenuPrincipal.setBounds(0, 0, 135, 19);
 		Lavarropas.getContentPane().add(mntmMenuPrincipal);
 		Lavarropas.setVisible(true);
 		}
 	private void Televisor(final Television tel) {
 		Televisor = new JFrame();
+		Televisor.setTitle("Television");
 		Televisor.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Televisor.setBounds(100, 100, 450, 300);
 		Televisor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -321,6 +325,7 @@ public class Presentacion {
 
 	private void Listado() {
 		Listado = new JFrame();
+		Listado.setTitle("Listado");
 		Listado.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
 		Listado.setBounds(100, 100, 779, 497);
 		Listado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
