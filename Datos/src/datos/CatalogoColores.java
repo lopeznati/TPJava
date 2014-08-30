@@ -1,7 +1,7 @@
 package datos;
 
 import entidades.Color;
-import entidades.Consumo;
+
 
 public class CatalogoColores {
 

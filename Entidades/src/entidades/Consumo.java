@@ -4,6 +4,10 @@ public class Consumo {
 
 	private String letra;
 	private int precio;
+	
+	public int getPrecio() {
+		return precio;
+	}
 	public Consumo()
 	{
 	}

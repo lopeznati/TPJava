@@ -2,15 +2,12 @@ package gui;
 
 import java.awt.EventQueue;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import negocio.*;
 import entidades.*;
@@ -22,7 +19,6 @@ import javax.swing.JMenuItem;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.peer.MenuPeer;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
@@ -30,13 +26,12 @@ import java.awt.Toolkit;
 
 public class Presentacion {
 
-	
+
 	private JFrame Menu_Principal;
 	private JFrame Listado;
 	private JFrame Lavarropas;
 	private JFrame Televisor;
 	private JFrame Alta_Electrodomestico;
-	private JFrame Baja_Electrodomestico;
 	xTableModelElectrodomesticos modelo;
 	private JTextField textprecio;
 	private JTextField txtcolor;
@@ -49,7 +44,6 @@ public class Presentacion {
 	private ControladorAltaElectrodomestico ce = new ControladorAltaElectrodomestico();
 	private JTextField textResolucion;
 	private JTextField textSintonizador;
-	private xTableModelElectrodomesticos xt= new xTableModelElectrodomesticos();
 	private JTable table;
 	private JMenuItem mntmMenuPrincipal;
 	private JMenuItem mntmMenuPrincipal_1;
@@ -76,7 +70,7 @@ public class Presentacion {
 	private void Alta_Electrodomestico() {
 		Alta_Electrodomestico = new JFrame();
 		Alta_Electrodomestico.setTitle("Alta Electrodomesticos");
-		Alta_Electrodomestico.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
+		Alta_Electrodomestico.setIconImage(Toolkit.getDefaultToolkit().getImage(Presentacion.class.getResource("/icono/Icono_de_Super_estrella.png")));
 		Alta_Electrodomestico.setBounds(100, 100, 450, 300);
 		Alta_Electrodomestico.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Alta_Electrodomestico.getContentPane().setLayout(null);
@@ -105,7 +99,7 @@ public class Presentacion {
 	private void Menu_Principal() {
 		Menu_Principal = new JFrame();
 		Menu_Principal.setTitle("Menu");
-		Menu_Principal.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
+		Menu_Principal.setIconImage(Toolkit.getDefaultToolkit().getImage(Presentacion.class.getResource("/icono/Icono_de_Super_estrella.png")));
 		Menu_Principal.setBounds(100, 100, 450, 300);
 		Menu_Principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Menu_Principal.getContentPane().setLayout(null);
@@ -134,7 +128,7 @@ public class Presentacion {
 
 		Lavarropas = new JFrame();
 		Lavarropas.setTitle("Lavarropas");
-		Lavarropas.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
+		Lavarropas.setIconImage(Toolkit.getDefaultToolkit().getImage(Presentacion.class.getResource("/icono/Icono_de_Super_estrella.png")));
 		Lavarropas.setBounds(100, 100, 450, 300);
 		Lavarropas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Lavarropas.getContentPane().setLayout(null);
@@ -231,7 +225,7 @@ public class Presentacion {
 	private void Televisor(final Television tel) {
 		Televisor = new JFrame();
 		Televisor.setTitle("Television");
-		Televisor.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
+		Televisor.setIconImage(Toolkit.getDefaultToolkit().getImage(Presentacion.class.getResource("/icono/Icono_de_Super_estrella.png")));
 		Televisor.setBounds(100, 100, 450, 300);
 		Televisor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Televisor.getContentPane().setLayout(null);
@@ -326,7 +320,7 @@ public class Presentacion {
 	private void Listado() {
 		Listado = new JFrame();
 		Listado.setTitle("Listado");
-		Listado.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\nati\\Desktop\\Icono_de_Super_estrella.png"));
+		Listado.setIconImage(Toolkit.getDefaultToolkit().getImage(Presentacion.class.getResource("/icono/Icono_de_Super_estrella.png")));
 		Listado.setBounds(100, 100, 779, 497);
 		Listado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Listado.getContentPane().setLayout(null);
