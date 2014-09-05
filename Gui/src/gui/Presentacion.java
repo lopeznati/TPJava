@@ -38,7 +38,6 @@ public class Presentacion {
 	private JTextField txtconsumo;
 	private JTextField textpeso;
 	private JTextField textcarga;
-	private JComboBox cboElectrodomesticos;
 	private JLabel lblEtiqueta;
 	private JScrollPane scrollPane;
 	private ControladorAltaElectrodomestico ce = new ControladorAltaElectrodomestico();
@@ -52,12 +51,14 @@ public class Presentacion {
 	private JTextField textImporteMinimo;
 	private JLabel label;
 	private JTextField textImporteMax;
+	private String[] letras={" ","A","B","C","D","E","F"};
+	private JComboBox cboElectrodomesticos;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Presentacion window = new Presentacion();
-					window.Menu_Principal.setVisible(true);
+					window.Listado.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,7 +66,7 @@ public class Presentacion {
 		});
 	}
 	public Presentacion() {
-		Menu_Principal();
+		Listado();
 	}
 	private void Alta_Electrodomestico() {
 		Alta_Electrodomestico = new JFrame();
@@ -325,7 +326,7 @@ public class Presentacion {
 		Listado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Listado.getContentPane().setLayout(null);
 		
-		cboElectrodomesticos = new JComboBox();
+		cboElectrodomesticos = new JComboBox(letras);
 		cboElectrodomesticos.setBounds(518, 11, 243, 22);
 		lblRangoImportes = new JLabel("Rango Importes:");
 		lblRangoImportes.setBounds(80, 15, 99, 18);
