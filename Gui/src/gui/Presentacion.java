@@ -58,7 +58,7 @@ public class Presentacion {
 			public void run() {
 				try {
 					Presentacion window = new Presentacion();
-					window.Listado.setVisible(true);
+					window.Menu_Principal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,7 +66,7 @@ public class Presentacion {
 		});
 	}
 	public Presentacion() {
-		Listado();
+		Menu_Principal();
 	}
 	private void Alta_Electrodomestico() {
 		Alta_Electrodomestico = new JFrame();
@@ -377,22 +377,14 @@ public class Presentacion {
 								array.add(ce.getElectrodomesticos().get(i));
 							}
 						}
+						
 					}
 				}
-				/*
-				if(textImporteMax.getText().length()!=0&&textImporteMax.getText().length()!=0){
-				   for (int i = 0; i < ce.getElectrodomesticos().size(); i++) {
-						if(ce.getElectrodomesticos().get(i).getPreciobase()<=Double.parseDouble(textImporteMax.getText())&&
-							ce.getElectrodomesticos().get(i).getPreciobase()>=Double.parseDouble(textImporteMinimo.getText()))
-						{
-						 array.add(ce.getElectrodomesticos().get(i));
-						}
-					}
-					LoadTable(array);
-					}
-				else
+				LoadTable(array);
+				if(textImporteMax.getText().length()==0&&textImporteMax.getText().length()==0 && l==" "){
 					LoadTable(ce.getElectrodomesticos());
-				*/
+				}
+				
 			}
 		});
 		
