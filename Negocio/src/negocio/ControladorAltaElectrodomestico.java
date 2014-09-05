@@ -22,6 +22,7 @@ public class ControladorAltaElectrodomestico {
 	}
 	public Consumo comprobarConsumoEnergetico(String letra)
 	{
+		letra=letra.toUpperCase();
 		Consumo consumos[] = cco.getConsumos();
 		for (int i = 0; i < consumos.length; i++) {
 			if(consumos[i].getLetra().equals(letra) )
