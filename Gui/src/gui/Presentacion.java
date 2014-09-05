@@ -352,6 +352,34 @@ public class Presentacion {
 		btnListar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				ArrayList<Electrodomestico> array = new ArrayList<Electrodomestico>();
+				String l=(String)cboElectrodomesticos.getSelectedItem();
+				for (int i = 0; i < ce.getElectrodomesticos().size(); i++) {
+					if(l!=" "){
+						if(textImporteMax.getText().length()!=0&&textImporteMax.getText().length()!=0){
+							if(ce.getElectrodomesticos().get(i).getConsumo().getLetra()==l){
+								if(ce.getElectrodomesticos().get(i).getPreciobase()<=Double.parseDouble(textImporteMax.getText())&& ce.getElectrodomesticos().get(i).getPreciobase()>=Double.parseDouble(textImporteMinimo.getText()))
+								{
+									array.add(ce.getElectrodomesticos().get(i));
+								}
+							}
+						}
+						else
+							if(ce.getElectrodomesticos().get(i).getConsumo().getLetra()==l){
+								array.add(ce.getElectrodomesticos().get(i));
+							}
+							
+						
+					}
+					else{
+						if(textImporteMax.getText().length()!=0&&textImporteMax.getText().length()!=0){
+							if(ce.getElectrodomesticos().get(i).getPreciobase()<=Double.parseDouble(textImporteMax.getText())&& ce.getElectrodomesticos().get(i).getPreciobase()>=Double.parseDouble(textImporteMinimo.getText()))
+							{
+								array.add(ce.getElectrodomesticos().get(i));
+							}
+						}
+					}
+				}
+				/*
 				if(textImporteMax.getText().length()!=0&&textImporteMax.getText().length()!=0){
 				   for (int i = 0; i < ce.getElectrodomesticos().size(); i++) {
 						if(ce.getElectrodomesticos().get(i).getPreciobase()<=Double.parseDouble(textImporteMax.getText())&&
@@ -364,7 +392,7 @@ public class Presentacion {
 					}
 				else
 					LoadTable(ce.getElectrodomesticos());
-				
+				*/
 			}
 		});
 		
