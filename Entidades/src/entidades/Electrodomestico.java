@@ -61,15 +61,15 @@ public abstract class Electrodomestico {
 		if(consumo.getLetra()=="A")
 			preciobase+=100;
 		if(consumo.getLetra()=="B")
-			preciobase+=100;
+			preciobase+=80;
 		if(consumo.getLetra()=="C")
-			preciobase+=100;
+			preciobase+=60;
 		if(consumo.getLetra()=="D")
-			preciobase+=100;
+			preciobase+=50;
 		if(consumo.getLetra()=="E")
-			preciobase+=100;
+			preciobase+=30;
 		if(consumo.getLetra()=="F")
-			preciobase+=100;
+			preciobase+=10;
 		
 
 		 if(peso>=0 && peso<=19)

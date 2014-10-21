@@ -3,6 +3,15 @@ package entidades;
 public class Color {
 	
 	String nombreColor;
+	int id;
+	public void setId(int _id)
+	{
+		id=_id;
+	}
+	public int getId()
+	{
+		return id;
+	}
 	public Color()
 	{
 		nombreColor = "blanco";
