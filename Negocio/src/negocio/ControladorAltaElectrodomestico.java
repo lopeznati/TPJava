@@ -13,24 +13,22 @@ public class ControladorAltaElectrodomestico {
 	public Color comprobarColor(String color)
 	{
 		color = color.toLowerCase();
-		Color colores[] = cc.getColores();
-		for (int i = 0; i < colores.length; i++) {
-			if(colores[i].getNombreColor().equals(color)) 
-				return colores[i];
+		for (int i = 0; i < cc.getColores().size(); i++) {
+			if(cc.getColores().get(i).getNombreColor().equals(color)) 
+				return cc.getColores().get(i);
 		}
-		return colores[0];
+		return cc.getColores().get(0);
 	}
 	public Consumo comprobarConsumoEnergetico(String letra)
 	{
 		letra=letra.toUpperCase();
-		Consumo consumos[] = cco.getConsumos();
-		for (int i = 0; i < consumos.length; i++) {
-			if(consumos[i].getLetra().equals(letra) )
+		for (int i = 0; i < cco.getConsumos().size(); i++) {
+			if(cco.getConsumos().get(i).getLetra().equals(letra) )
 			{
-				return consumos[i];
+				return cco.getConsumos().get(i);
 			}
 		}
-		return consumos[5];
+		return cco.getConsumos().get(5);
 	}
 	public void altaElectrodomestico(Electrodomestico e)
 	{
