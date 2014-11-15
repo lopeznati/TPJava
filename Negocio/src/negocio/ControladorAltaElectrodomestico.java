@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.ArrayList;
 
+
 import datos.*;
 import entidades.*;
 
@@ -12,29 +13,16 @@ public class ControladorAltaElectrodomestico {
 	private CatalogoConsumos cco = new CatalogoConsumos();
 	public Color comprobarColor(String color)
 	{
-		color = color.toLowerCase();
-		Color colores[] = cc.getColores();
-		for (int i = 0; i < colores.length; i++) {
-			if(colores[i].getNombreColor().equals(color)) 
-				return colores[i];
-		}
-		return colores[0];
+		return cc.ComprobarColor(color);
 	}
 	public Consumo comprobarConsumoEnergetico(String letra)
 	{
-		Consumo consumos[] = cco.getConsumos();
-		for (int i = 0; i < consumos.length; i++) {
-			if(consumos[i].getLetra().equals(letra) )
-			{
-				return consumos[i];
-			}
-		}
-		return consumos[5];
+		return cco.ComprobarConsumo(letra);
 	}
 	public void altaElectrodomestico(Electrodomestico e)
 	{
-		e.setIndice(ce.getElectrodomesticos().size());
 		ce.nuevoElectrodomestico(e);
+		
 	}
 	private CatalogoElectrodomesticos getCatalogoElectrodomesticos()
 	{
@@ -44,5 +32,27 @@ public class ControladorAltaElectrodomestico {
 	public ArrayList<Electrodomestico> getElectrodomesticos()
 	{
 		return getCatalogoElectrodomesticos().getElectrodomesticos();
+	}
+	public void removerElectrodomestico(int id)
+	{
+		int i = 0;
+		while(i<getElectrodomesticos().size())
+		{
+			ArrayList<Electrodomestico> e = getElectrodomesticos();
+			if(e.get(i).getIndice()==id)
+				e.remove(e.get(i));
+			i++;
+		}
+		ce.remover(id);
+			
+	}
+	public Electrodomestico getElectrodomestico(int id)
+	{
+		for(Electrodomestico e : getElectrodomesticos())
+		{
+			if(e.getIndice() == id)
+				return e;
+		}
+		return null;
 	}
 }

@@ -1,33 +1,51 @@
 package datos;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import connection.ConnectionDB;
 import entidades.Consumo;
 
 public class CatalogoConsumos {
 
-	private Consumo consumos[] = new Consumo[6];
-
 	public CatalogoConsumos()
 	{
-		for (int i = 0; i < consumos.length; i++) {
-			consumos[i] = new Consumo();
-		}
-		consumos[0].setLetra("A");
-		consumos[0].setPrecio(100);
-		consumos[1].setLetra("B");
-		consumos[1].setPrecio(80);
-		consumos[2].setLetra("C");
-		consumos[2].setPrecio(60);
-		consumos[3].setLetra("D");
-		consumos[3].setPrecio(50);
-		consumos[4].setLetra("E");
-		consumos[4].setPrecio(30);
-		consumos[5].setLetra("F");
-		consumos[5].setPrecio(10);
 	}
-	
-	public Consumo[]  getConsumos()
+	public static String getConsumo(int id)
 	{
-		return consumos;
+		String sql="select letra from consumos where id_consumo=?";
+		java.sql.PreparedStatement sentencia=null;
+		ResultSet rs=null;
+		String nombre = null;
+		try {			
+			sentencia= ConnectionDB.getInstancia().getConn().prepareStatement(sql);
+			sentencia.setInt(1, id);
+			rs= sentencia.executeQuery();
+			if(rs.next()){
+			nombre = rs.getString("letra");}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return nombre;
 		
 	}
+	public Consumo ComprobarConsumo(String nombre)
+	{
+		String sql="select id_consumo from consumos where letra=?";
+		java.sql.PreparedStatement sentencia=null;
+		ResultSet rs=null;
+		Consumo c = new Consumo();
+		try {			
+			sentencia= ConnectionDB.getInstancia().getConn().prepareStatement(sql);
+			sentencia.setString(1, nombre);
+			rs= sentencia.executeQuery();
+			if(rs.next()){
+			c.setId(rs.getInt("id_consumo"));}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
+		
+	}
+		
 }
