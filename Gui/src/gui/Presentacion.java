@@ -302,7 +302,8 @@ public class Presentacion {
 							ce.comprobarColor(txtcolor.getText()), ce.comprobarConsumoEnergetico(txtconsumo.getText()),
 							Integer.parseInt(textResolucion.getText()),Boolean.parseBoolean(textSintonizador.getText()));
 					t.setIndice(tel.getIndice());
-					ce.getElectrodomesticos().set(tel.getIndice(), t);
+					ce.removerElectrodomestico(tel.getIndice());
+					ce.altaElectrodomestico(t);
 					Listado.setVisible(false);
 					Listado();
 					LoadTable(ce.getElectrodomesticos());
