@@ -197,7 +197,8 @@ public class Presentacion {
 						Lavarropas l =new Lavarropas(Double.parseDouble(textprecio.getText()) , Integer.parseInt(textpeso.getText()) , 
 								ce.comprobarColor(txtcolor.getText()), ce.comprobarConsumoEnergetico(txtconsumo.getText()),Double.parseDouble(textcarga.getText()));
 						l.setIndice(lav.getIndice());
-						ce.getElectrodomesticos().set(lav.getIndice(), l);
+						ce.removerElectrodomestico(lav.getIndice());
+						ce.altaElectrodomestico(l);
 
 						Listado.setVisible(false);
 						Listado();
@@ -354,9 +355,9 @@ public class Presentacion {
 				ArrayList<Electrodomestico> array = new ArrayList<Electrodomestico>();
 				String l=(String)cboElectrodomesticos.getSelectedItem();
 				for (int i = 0; i < ce.getElectrodomesticos().size(); i++) {
-					if(l!=" "){
+					if(!l.equals("  ")){
 						if(textImporteMax.getText().length()!=0&&textImporteMax.getText().length()!=0){
-							if(ce.getElectrodomesticos().get(i).getConsumo().getLetra()==l){
+							if(ce.getElectrodomesticos().get(i).getConsumo().getLetra().equals(l)){
 								if(ce.getElectrodomesticos().get(i).getPreciobase()<=Double.parseDouble(textImporteMax.getText())&& ce.getElectrodomesticos().get(i).getPreciobase()>=Double.parseDouble(textImporteMinimo.getText()))
 								{
 									array.add(ce.getElectrodomesticos().get(i));
@@ -364,7 +365,7 @@ public class Presentacion {
 							}
 						}
 						else
-							if(ce.getElectrodomesticos().get(i).getConsumo().getLetra()==l){
+							if(ce.getElectrodomesticos().get(i).getConsumo().getLetra().equals(l)){
 								array.add(ce.getElectrodomesticos().get(i));
 							}
 							
@@ -422,11 +423,14 @@ public class Presentacion {
 		JButton btnModifica = new JButton("Modificar");
 		btnModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				if(ce.getElectrodomesticos().get(Integer.parseInt(textID.getText())).getClass() == Television.class){
-					Televisor((Television) ce.getElectrodomesticos().get(Integer.parseInt(textID.getText())));}
-				else{
-					Lavarropas((Lavarropas)ce.getElectrodomesticos().get(Integer.parseInt(textID.getText())));}
+				Electrodomestico e = ce.getElectrodomestico(Integer.parseInt(textID.getText()));
+				if(e!=null)
+				{
+					if(e.getClass() == Television.class){
+						Televisor((Television)e);}
+					else{
+						Lavarropas((Lavarropas)e);}
+				}
 			}
 		});
 		btnModifica.setBounds(280, 411, 91, 23);
@@ -435,7 +439,7 @@ public class Presentacion {
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ce.getElectrodomesticos().remove(ce.getElectrodomesticos().get(Integer.parseInt(textID.getText())));
+				ce.removerElectrodomestico(Integer.parseInt(textID.getText()));
 				Listado.setVisible(false);
 				Listado();
 				LoadTable(ce.getElectrodomesticos());
