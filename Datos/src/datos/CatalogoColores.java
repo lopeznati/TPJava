@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 
 
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
 import connection.ConnectionDB;
 import entidades.Color;
@@ -14,44 +12,43 @@ import entidades.Color;
 
 public class CatalogoColores {
 
-	private ArrayList<Color> colores = new ArrayList<Color>();
 	public CatalogoColores()
 	{
-		setColores();
 	}
-	public ArrayList<Color> getColores()
+	public static String getNombreColor(int id)
 	{
-		return colores;
-	}
-	private void setColores()
-	{
-		String sql="select id_color, nombre from colores";
-		Statement sentencia=null;
+		String sql="select nombre from colores where id_color=?";
+		java.sql.PreparedStatement sentencia=null;
 		ResultSet rs=null;
+		String nombre = null;
 		try {			
-			sentencia= ConnectionDB.getInstancia().getConn().createStatement();
-			rs= sentencia.executeQuery(sql);
-			
-			while(rs.next()){
-				entidades.Color c= new entidades.Color();
-				c.setId(rs.getInt("id_color"));
-				c.setNombreColor(rs.getString("nombre"));
-				
-				colores.add(c);
-			}					
+			sentencia= ConnectionDB.getInstancia().getConn().prepareStatement(sql);
+			sentencia.setInt(1, id);
+			rs= sentencia.executeQuery();
+			if(rs.next()){
+			nombre = rs.getString("nombre");}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		finally{
-			try{
-				if(rs!=null){rs.close();}
-				if(sentencia!=null && !sentencia.isClosed()){sentencia.close();}
-				ConnectionDB.getInstancia().CloseConn();
-			}
-			catch (SQLException sqle){
-				sqle.printStackTrace();
-			}
+		return nombre;
+		
+	}
+	public Color ComprobarColor(String nombre)
+	{
+		String sql="select id_color from colores where nombre=?";
+		java.sql.PreparedStatement sentencia=null;
+		ResultSet rs=null;
+		Color c = new Color();
+		try {			
+			sentencia= ConnectionDB.getInstancia().getConn().prepareStatement(sql);
+			sentencia.setString(1, nombre);
+			rs= sentencia.executeQuery();
+			if(rs.next()){
+			c.setId(rs.getInt("id_color"));}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return c;
 		
 	}
 }

@@ -4,6 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/Other Driver Default"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Entidades"/>
-	<classpathentry kind="lib" path="D:/git/Tpjava/TPJava/Datos/mysql-connector-java-5.1.32-bin.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.32-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
