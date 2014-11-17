@@ -356,8 +356,8 @@ public class Presentacion {
 				ArrayList<Electrodomestico> array = new ArrayList<Electrodomestico>();
 				String l=(String)cboElectrodomesticos.getSelectedItem();
 				for (int i = 0; i < ce.getElectrodomesticos().size(); i++) {
-					if(!l.equals("  ")){
-						if(textImporteMax.getText().length()!=0&&textImporteMax.getText().length()!=0){
+					if(!l.equals(" ")){
+						if(textImporteMax.getText().length()!=0&&textImporteMinimo.getText().length()!=0){
 							if(ce.getElectrodomesticos().get(i).getConsumo().getLetra().equals(l)){
 								if(ce.getElectrodomesticos().get(i).getPreciobase()<=Double.parseDouble(textImporteMax.getText())&& ce.getElectrodomesticos().get(i).getPreciobase()>=Double.parseDouble(textImporteMinimo.getText()))
 								{
@@ -373,7 +373,7 @@ public class Presentacion {
 						
 					}
 					else{
-						if(textImporteMax.getText().length()!=0&&textImporteMax.getText().length()!=0){
+						if(textImporteMax.getText().length()!=0&&textImporteMinimo.getText().length()!=0){
 							if(ce.getElectrodomesticos().get(i).getPreciobase()<=Double.parseDouble(textImporteMax.getText())&& ce.getElectrodomesticos().get(i).getPreciobase()>=Double.parseDouble(textImporteMinimo.getText()))
 							{
 								array.add(ce.getElectrodomesticos().get(i));
@@ -383,7 +383,7 @@ public class Presentacion {
 					}
 				}
 				LoadTable(array);
-				if(textImporteMax.getText().length()==0&&textImporteMax.getText().length()==0 && l==" "){
+				if(textImporteMax.getText().length()==0&&textImporteMinimo.getText().length()==0 && l==" "){
 					LoadTable(ce.getElectrodomesticos());
 				}
 				
