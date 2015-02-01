@@ -8,6 +8,9 @@
         <dependent-module archiveName="Entidades.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Entidades/Entidades">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="Datos.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Datos/Datos">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="tp_java"/>
         <property name="java-output-path" value="/tp_java/build/classes"/>
     </wb-module>

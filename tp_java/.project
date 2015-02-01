@@ -3,8 +3,9 @@
 	<name>tp_java</name>
 	<comment></comment>
 	<projects>
-		<project>Negocio</project>
+		<project>Datos</project>
 		<project>Entidades</project>
+		<project>Negocio</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

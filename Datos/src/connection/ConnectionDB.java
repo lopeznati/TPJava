@@ -14,7 +14,7 @@ public class ConnectionDB {
 	
 	private static String dbUrl="jdbc:mysql://localhost:3306/ElectrodomesticosDB";
 	private static String dbUser="root";
-	private static String dbPassword="123";
+	private static String dbPassword="1234";
 	
 	
 	private ConnectionDB(){}
