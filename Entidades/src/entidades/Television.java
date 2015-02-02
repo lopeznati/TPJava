@@ -32,6 +32,17 @@ public class Television extends Electrodomestico {
 		
 	}
 	
+	public String getTDT()
+	{
+		if (this.sintonizador)
+		{
+			return "Si";
+		}
+		else
+		{
+			return "No";
+		}
+	}
 	public Television(double preciob, int _peso, Color _color, Consumo consumo,  int _resolucion, boolean _sintonizador){
 		super(preciob, _peso, _color, consumo);
 		setResolucion(_resolucion);

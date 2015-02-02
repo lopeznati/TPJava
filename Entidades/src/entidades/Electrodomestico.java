@@ -1,6 +1,13 @@
 
 package entidades;
+
+import java.io.Serializable;
+
 public abstract class Electrodomestico {
+	/**
+	 * 
+	 */
+
 	private double preciobase;
 	private int peso;
 	private Color color;
@@ -24,9 +31,14 @@ public abstract class Electrodomestico {
 	public double getPreciobase() {
 		return preciobase;
 	}
+	
+	
 
 	
 	public double getPeso() {
+		return peso;
+	}
+	public int getpeso(){
 		return peso;
 	}
 
@@ -54,7 +66,6 @@ public abstract class Electrodomestico {
 		peso=_peso;
 		setColor(_color);
 		setConsumo(consumo);
-
 	}
 	public void precioFinal()
 	{
